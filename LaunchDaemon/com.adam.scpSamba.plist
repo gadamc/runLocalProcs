@@ -2,7 +2,7 @@
 <plist version="1.0">
 <dict>
         <key>label</key>
-        <string>com.adam.scpSambaToLyon</string>
+        <string>com.adam.runlocalprocs</string>
 
 	<key>EnvironmentVariables</key>
 	<dict>
@@ -18,19 +18,19 @@
 
 	<key>Program</key>
         <array>
-                <string>/Users/adam/Scripts/scpSambaToLyon/polldb.py</string>
+                <string>/Users/adam/Scripts/runLocalProcs/polldb.py</string>
         </array>
 	
 	<key>ProgramArguments</key>
         <array>
-                <string>/Users/adam/Scripts/scpSambaToLyon/polldb.py</string>
+                <string>/Users/adam/Scripts/runLocalProcs/polldb.py</string>
 	</array>
 
 	<key>StandardOutPath</key>
-	<string>/Users/adam/Scripts/scpSambaToLyon/scriptStdOut.log</string>
+	<string>/Users/adam/Scripts/runLocalProcs/scriptStdOut.log</string>
 	
 	<key>StandardErrorPath</key>
-	<string>/Users/adam/Scripts/scpSambaToLyon/scriptStdErr.log</string>
+	<string>/Users/adam/Scripts/runLocalProcs/scriptStdErr.log</string>
 	
 	<key>UserName</key>
 	<string>adam</string>
