@@ -1,30 +1,39 @@
 #!/usr/bin/env python
 from couchdbkit import Server, Database, Consumer
-from KDataPy.scripts.dataprocess import runProc0
+import KDataPy.scripts.dataprocess.runLocalProcs as rp
 
 import datetime
 import json
+import strjson
 import time
+import sys
+
+
+#sys.argv[1] == credentials file in json format
+#should contain 'server', 'database', 'sftp_username', 'sftp_password'
+try:
+    creds = strjson.load(sys.argv[1])
+    creds['ftp'] = True
+    print json.dumps(creds, indent=1)
+
+except Exception as e:
+    print e
+    print 'failed to open credentials file'
+    sys.exit(1)
 
 def callback(inputLine):
-    n = datetime.datetime.now()
+
     print ''
-    print n
+    print str(datetime.datetime.now())
     print json.dumps(inputLine,indent=1)
-    print 'waiting for ten minutes before starting data transfer to be sure that the entire data file has been copied to the local disk. We do this because we depend upon the ana scripts that copy data from the samba machines to S7'
+    #print 'waiting for ten minutes before starting data transfer to be sure that the entire data file has been copied to the local disk. We do this because we depend upon the ana scripts that copy data from the samba machines to S7'
+    print 'ten minute sleep to ensure data transfer complete'
     time.sleep(600)
     print ''
-    runProc0.main('https://edelweissuser:edwdbw1mp@edelweiss.cloudant.com', 'datadb', 'gadamc','h8z@mqFF12')
+    rp.run(**creds)
 
-def main():
-    s = Server('https://edelweissuser:edwdbw1mp@edelweiss.cloudant.com')
-    db = s['datadb']
-    c = Consumer(db)
-
-    #start listening since = current update sequence.
-    #callback function is run.main
-    #heartbeat every minute to keep the connection alive.
-    c.wait(callback, since = db.info()['update_seq'], filter='proc/newproc0', feed='continuous', heartbeat=60000)  
-
-if __name__ == '__main__':
-    main()
+s = Server(creds['server'])
+db = s[creds['database']]
+c = Consumer(db)
+print 'starting continuous polling....'
+c.wait(callback, since = db.info()['update_seq'], filter='proc/newproc0', feed='continuous', heartbeat=60000)  

@@ -7,23 +7,28 @@
 	<key>EnvironmentVariables</key>
 	<dict>
 	  <key>KDATA_ROOT</key>
-	  <string>/Users/adam/softwareDev/kdata</string>
+	  <string>/Users/adam/softwareDev/kdata50</string>
 	  <key>PYTHONPATH</key>
-	  <string>/Users/adam/softwareDev/root/v5.34.02/lib:/Users/adam/softwareDev/kdata/lib</string>
+	  <string>/Users/adam/softwareDev/root/v5.34.02/lib:/Users/adam/softwareDev/kdata50/lib</string>
 	  <key>ROOTSYS</key>
 	  <string>/Users/adam/softwareDev/root/v5.34.02</string>
 	  <key>DYLD_LIBRARY_PATH</key>
-	  <string>/Users/adam/softwareDev/kdata/lib:/Users/adam/softwareDev/root/v5.34.02/lib</string>
+	  <string>/Users/adam/softwareDev/kdata50/lib:/Users/adam/softwareDev/root/v5.34.02/lib</string>
 	</dict>
+
+	<key>WorkingDirectory</key>
+	<string>/Users/adam/Scripts/runLocalProcs</string>
 
 	<key>Program</key>
         <array>
                 <string>/Users/adam/Scripts/runLocalProcs/polldb.py</string>
+		<string>/Users/adam/Scripts/runLocalProcs/localcredentials.json</string>
         </array>
 	
 	<key>ProgramArguments</key>
         <array>
                 <string>/Users/adam/Scripts/runLocalProcs/polldb.py</string>
+		<string>/Users/adam/Scripts/runLocalProcs/localcredentials.json</string>
 	</array>
 
 	<key>StandardOutPath</key>
